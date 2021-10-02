@@ -33,9 +33,14 @@ namespace KK.GitHub.Demo.ClassFiles.HelperFiles
                     foreach(DataColumn column in dtDataTable.Columns)
                     {
                         string value = Convert.ToString(row[column]);
-                        if (value.Contains(','))
+                        if (value.Contains(',')) //To handle comma
                         {
                             value = string.Format("\"{0}\"", value);
+                            streamWriter.Write(value);
+                        }
+                        else if(value.Contains("\"")) //To handle double quotes
+                        {
+                            value = string.Format("\"{0}\"", value.Replace("\"", "\"\""));
                             streamWriter.Write(value);
                         }
                         else
