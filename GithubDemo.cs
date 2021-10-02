@@ -1,10 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using KK.GitHub.Demo.ClassFiles;
+using KK.GitHub.Demo.ClassFiles.Constants;
+using KK.GitHub.Demo.ClassFiles.GitModel;
+using KK.GitHub.Demo.ClassFiles.HelperFiles;
+using KK.GitHub.Demo.ClassFiles.LogicFiles;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -30,7 +37,26 @@ namespace KK.GitHub.Demo
                     var gitResponses = JsonConvert.DeserializeObject<List<GitModelCommit>>(responseResult);
                     if (gitResponses != null && gitResponses.Count > 0)
                     {
-                        MessageBox.Show("Received response on the details provided! Stay Tuned..", "Result Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        BinarySearchTree binarySearch = new BinarySearchTree();
+                        foreach (GitModelCommit gitResponse in gitResponses)
+                        {
+                            string[] commentWords = gitResponse.commit.message.Split(' ');
+                            for (int i = 0; i < commentWords.Length; i++)
+                            {
+                                binarySearch.AddNode(commentWords[i].Trim());
+                            }
+                        }
+
+                        txtGitUrl.Enabled = false;
+                        txtToken.Enabled = false;
+                        txtUserName.Enabled = false;
+                        btnValidateInput.Enabled = false;
+                        lblCommentHeader.Visible = true;
+                        lblInformation.Visible = false;
+                        lblLeftHeading.Text = "Authentication successful.";
+                        dataGridView.DataSource = BinarySearchTree.convertBinaryTreeToDataTable(binarySearch.Root);
+                        dataGridView.Visible = true;
+                        btnExportCSV.Visible = true;
                     }
 
                 }
@@ -71,7 +97,7 @@ namespace KK.GitHub.Demo
             string[] splitGitUrl = txtGitUrl.Text.Split('/');
             HttpClient client = new HttpClient
             {
-                BaseAddress = new Uri("https://api.github.com"),
+                BaseAddress = new Uri(Constants.gitHubUrl),
 
             };
             client.DefaultRequestHeaders.Add("User-Agent", "Anything");
@@ -88,18 +114,15 @@ namespace KK.GitHub.Demo
                 return null;
         }
 
-        class GitModelCommit
+
+        private void btnExportCSV_Click(object sender, EventArgs e)
         {
-            public string comments_url { get; set; }
-            public CommitComments commit { get; set; }
+            MessageBox.Show("ExportToCSV.csv file will be created and the directory will be opened");
+            BinarySearchTree.dtResultTable.ExportToCSV(AppDomain.CurrentDomain.BaseDirectory + "/ExportToCSV.csv");
+            if(!DirectoryHelper.OpenFolder(AppDomain.CurrentDomain.BaseDirectory))
+                MessageBox.Show(string.Format("{0} Directory does not exist!", AppDomain.CurrentDomain.BaseDirectory));
         }
 
-        class CommitComments
-        {
-            public string message { get; set; }
-
-        }
-
-
+       
     }
 }
