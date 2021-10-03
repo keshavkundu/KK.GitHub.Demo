@@ -12,5 +12,7 @@ namespace KK.GitHub.Demo.ClassFiles.Constants
     public static class Constants
     {
         public static string gitHubUrl = "https://api.github.com";
+        public static string firstColumn = "CommentWord";
+        public static string secondColumn = "Occurence";
     }
 }

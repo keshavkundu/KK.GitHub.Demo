@@ -1,5 +1,4 @@
-﻿using KK.GitHub.Demo.ClassFiles;
-using KK.GitHub.Demo.ClassFiles.Constants;
+﻿using KK.GitHub.Demo.ClassFiles.Constants;
 using KK.GitHub.Demo.ClassFiles.GitModel;
 using KK.GitHub.Demo.ClassFiles.HelperFiles;
 using KK.GitHub.Demo.ClassFiles.LogicFiles;

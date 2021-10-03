@@ -1,44 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/* 
+ Created By:        Keshav Kundu
+ Created Date:      02-10-2021
+ Modified Date:     NA
+ Purpose:           Figure out which string is in ascending order based on ASCII characters 
+                    present in the string.
+ Referenced files:  Used by BinarySearchTree class file.
+ */
 namespace KK.GitHub.Demo.ClassFiles.LogicFiles
 {
-    class Sorting
+    public class Sorting
     {
-        public static int AsciSortStrings(string leftString, string rightString)
+        /// <summary>
+        /// Compare two strings
+        /// </summary>
+        /// <param name="leftString"></param>
+        /// <param name="rightString"></param>
+        /// <returns>0 for equal, positive if left string in less, negative if right string is less</returns>
+        public static int AsciiSortStrings(string leftString, string rightString)
         {
+            int returnVal = 0; //Consider them equal
             char[] leftChar = leftString.ToCharArray();
             char[] rightChar = rightString.ToCharArray();
-            int comparisonValue = 0;
-            //0 for equal, 1 if left string in less, -1 if right string is less
-            int totalCharToCompare; //to compare the maximum characters common for both the strings
-            if (leftChar.Length > rightChar.Length)
-            {
-                totalCharToCompare = rightChar.Length;
-            }
-            else
-            {
-                totalCharToCompare = leftChar.Length;
-            }
+            int totalCharToCompare = (leftChar.Length > rightChar.Length) ? rightChar.Length : leftChar.Length;
             for (int i = 0; i < totalCharToCompare; i++)
             {
-                if (leftChar[i] < rightChar[i])
-                {
-                    comparisonValue = 1;
+                returnVal = rightChar[i].CompareTo(leftChar[i]); //Positive if left char is less
+                if (returnVal > 0 || returnVal < 0)
                     break;
-                }
-                else if (leftChar[i] > rightChar[i])
-                {
-                    comparisonValue = -1;
-                    break;
-                }
-                else
-                    comparisonValue = 0;
             }
-            return comparisonValue;
+            if (returnVal == 0 && (leftChar.Length > rightChar.Length))
+                return -1;
+            else if (returnVal == 0 && (leftChar.Length < rightChar.Length))
+                return 1;
+            return returnVal;
         }
     }
 }
