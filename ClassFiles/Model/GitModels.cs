@@ -7,7 +7,7 @@
  Referenced files:  GithubDemo.cs and Internal reference in GitModel.cs for CommitComments class
  */
 
-namespace KK.GitHub.Demo.ClassFiles.GitModel
+namespace KK.GitHub.Demo.ClassFiles.Model
 {
     class GitModelCommit
     {

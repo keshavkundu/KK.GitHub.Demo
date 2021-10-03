@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KK.GitHub.Demo", "KK.GitHub.Demo.csproj", "{C2C5167F-62F1-4932-9323-9B5166E98759}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KK.GitHub.Demo.Tests", "..\KK.GitHub.Demo.Tests\KK.GitHub.Demo.Tests.csproj", "{AF09E7B6-61E6-4F22-9E22-2DE847D100EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C2C5167F-62F1-4932-9323-9B5166E98759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2C5167F-62F1-4932-9323-9B5166E98759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2C5167F-62F1-4932-9323-9B5166E98759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF09E7B6-61E6-4F22-9E22-2DE847D100EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF09E7B6-61E6-4F22-9E22-2DE847D100EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF09E7B6-61E6-4F22-9E22-2DE847D100EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF09E7B6-61E6-4F22-9E22-2DE847D100EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,7 @@
                     Store the string values in the tree and onvert the tree to datatable.
  Referenced files:  GithubDemo.cs calls BinarySearchTree class and Node class by BinarySearchTree class
  */
+using System;
 using System.Data;
 using KK.GitHub.Demo.ClassFiles.Constants;
 namespace KK.GitHub.Demo.ClassFiles.LogicFiles
@@ -26,9 +27,10 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
     /// </summary>
     public class BinarySearchTree
     {
+        private static readonly DataTable dtResultTable = new DataTable();
+
         #region Public Accessed Objects and Methods
 
-        public static DataTable dtResultTable = new DataTable();
         public Node Root { get; set; }
 
         /// <summary>
@@ -38,37 +40,44 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
         /// <returns>This method returns true if a node is added else false if another node is found</returns>
         public bool AddNode(string value)
         {
-            Node before = null, after = Root;
-            while (after != null)
+            try
             {
-                before = after;
-                if (Sorting.AsciiSortStrings(value, after.Word) > 0) //for node in left node after
-                    after = after.LeftNode;
-                else if (Sorting.AsciiSortStrings(value, after.Word) < 0) //for node in right node after
-                    after = after.RightNode;
+                Node before = null, after = Root;
+                while (after != null)
+                {
+                    before = after;
+                    if (Sorting.AsciiSortStrings(value, after.Word) > 0) //for node in left node after
+                        after = after.LeftNode;
+                    else if (Sorting.AsciiSortStrings(value, after.Word) < 0) //for node in right node after
+                        after = after.RightNode;
+                    else
+                    {
+                        //Exist same value
+                        Node sameNode = SearchValue(value);
+                        if (sameNode != null)
+                            sameNode.Count++; //Update the count of occurence
+                        return false;
+                    }
+                }
+                Node newNode = new Node
+                {
+                    Word = value
+                };
+                if (Root == null)
+                    Root = newNode;
                 else
                 {
-                    //Exist same value
-                    Node sameNode = SearchValue(value);
-                    if (sameNode != null)
-                        sameNode.Count++; //Update the count of occurence
-                    return false;
+                    if (Sorting.AsciiSortStrings(value, before.Word) > 0) //For inseting in left node before
+                        before.LeftNode = newNode;
+                    else
+                        before.RightNode = newNode; //For inserting in right node before
                 }
+                return true;
             }
-            Node newNode = new Node
+            catch (Exception ex)
             {
-                Word = value
-            };
-            if (Root == null)
-                Root = newNode;
-            else
-            {
-                if (Sorting.AsciiSortStrings(value, before.Word) > 0) //For inseting in left node before
-                    before.LeftNode = newNode;
-                else
-                    before.RightNode = newNode; //For inserting in right node before
+                throw ex;
             }
-            return true;
         }
         #endregion
 
@@ -112,19 +121,26 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
         /// <returns>Datatable with coulmn CommentWord and Occurence</returns>
         public static DataTable convertBinaryTreeToDataTable(Node parent)
         {
-            if (parent != null)
+            try
             {
-                convertBinaryTreeToDataTable(parent.LeftNode);
-                if (dtResultTable.Columns.Count == 0)
+                if (parent != null)
                 {
-                    dtResultTable.Columns.Add(Constants.Constants.firstColumn, typeof(string));
-                    dtResultTable.Columns.Add(Constants.Constants.secondColumn, typeof(int));
+                    convertBinaryTreeToDataTable(parent.LeftNode);
+                    if (dtResultTable.Columns.Count == 0)
+                    {
+                        dtResultTable.Columns.Add(ApplicationConstants.firstColumn, typeof(string));
+                        dtResultTable.Columns.Add(ApplicationConstants.secondColumn, typeof(int));
+                    }
+                    DataRow drRow = dtResultTable.NewRow();
+                    drRow[0] = parent.Word;
+                    drRow[1] = parent.Count;
+                    dtResultTable.Rows.Add(drRow);
+                    convertBinaryTreeToDataTable(parent.RightNode);
                 }
-                DataRow drRow = dtResultTable.NewRow();
-                drRow[0] = parent.Word;
-                drRow[1] = parent.Count;
-                dtResultTable.Rows.Add(drRow);
-                convertBinaryTreeToDataTable(parent.RightNode);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return dtResultTable;
         }

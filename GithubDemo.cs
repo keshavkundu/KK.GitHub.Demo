@@ -1,69 +1,105 @@
-﻿using KK.GitHub.Demo.ClassFiles.Constants;
-using KK.GitHub.Demo.ClassFiles.GitModel;
+﻿using KK.GitHub.Demo.ClassFiles.ExtensionFiles;
+using KK.GitHub.Demo.ClassFiles.Model;
 using KK.GitHub.Demo.ClassFiles.HelperFiles;
 using KK.GitHub.Demo.ClassFiles.LogicFiles;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
 
 namespace KK.GitHub.Demo
 {
     public partial class GithubDemo : Form
     {
+        #region Private Variables
+        private UserInput userInput = null;
+        DataTable dataTableFromBinaryTree = null;
+        #endregion
+
         public GithubDemo()
         {
             InitializeComponent();
         }
 
+        #region Application Events
         private void btnValidateInput_Click(object sender, EventArgs e)
         {
-            if (ValidationSuccess())
+            try
             {
-                string responseResult = AuthenticateUser();
-                if (responseResult != null)
+                if (ValidationSuccess()) //To check if input parameter is valid or not
                 {
-                    var gitResponses = JsonConvert.DeserializeObject<List<GitModelCommit>>(responseResult);
-                    if (gitResponses != null && gitResponses.Count > 0)
+                    string responseResult = AuthenticationHelper.GetInstance.AuthenticateUser(userInput);
+                    if (responseResult != null)
                     {
-                        BinarySearchTree binarySearch = new BinarySearchTree();
-                        foreach (GitModelCommit gitResponse in gitResponses)
+                        var gitResponses = JsonConvert.DeserializeObject<List<GitModelCommit>>(responseResult);
+                        if (gitResponses != null && gitResponses.Count > 0)
                         {
-                            string[] commentWords = gitResponse.commit.message.Split(' ');
-                            for (int i = 0; i < commentWords.Length; i++)
+                            BinarySearchTree binarySearch = new BinarySearchTree();
+                            foreach (GitModelCommit gitResponse in gitResponses)
                             {
-                                binarySearch.AddNode(commentWords[i].Trim());
+                                string[] commentWords = gitResponse.commit.message.Split();
+                                for (int i = 0; i < commentWords.Length; i++)
+                                {
+                                    binarySearch.AddNode(commentWords[i].Trim());
+                                }
                             }
+                            dataTableFromBinaryTree = BinarySearchTree.convertBinaryTreeToDataTable(binarySearch.Root);
+                            EnableDisableFieldsAfterResponse();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No result found..", "Authentication Success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                         }
 
-                        txtGitUrl.Enabled = false;
-                        txtToken.Enabled = false;
-                        txtUserName.Enabled = false;
-                        btnValidateInput.Enabled = false;
-                        lblCommentHeader.Visible = true;
-                        lblInformation.Visible = false;
-                        lblLeftHeading.Text = "Authentication successful.";
-                        dataGridView.DataSource = BinarySearchTree.convertBinaryTreeToDataTable(binarySearch.Root);
-                        dataGridView.Visible = true;
-                        btnExportCSV.Visible = true;
                     }
-
-                }
-                else
-                {
-                    MessageBox.Show("Authentication unsuccessful..", "Authentication Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    else
+                    {
+                        MessageBox.Show("Authentication unsuccessful..", "Authentication Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                LogExceptionForApplication(ex);
+            }
+        }
+
+        private void btnExportCSV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataTableFromBinaryTree.ExportToCSV(AppDomain.CurrentDomain.BaseDirectory);
+                OpenFolderPath();
+            }
+            catch (Exception ex)
+            {
+                LogExceptionForApplication(ex);
+            }
+        }
+
+        #endregion
+
+        #region Common private methods
+        private void OpenFolderPath()
+        {
+            if (!DirectoryHelper.GetInstance.OpenFolder(AppDomain.CurrentDomain.BaseDirectory))
+                MessageBox.Show(string.Format("{0} Directory does not exist!", AppDomain.CurrentDomain.BaseDirectory));
+        }
+
+        private void LogExceptionForApplication(Exception ex)
+        {
+            if (!ex.LogException(AppDomain.CurrentDomain.BaseDirectory))
+            {
+                MessageBox.Show(string.Format("Unable to log exception! Original exception: {0}",
+                    ex.Message));
+            }
+            else
+            {
+                MessageBox.Show("An exception has occurred! Please see the log file for more information."); ;
+                OpenFolderPath();
+            }
+
         }
 
         private bool ValidationSuccess()
@@ -83,45 +119,31 @@ namespace KK.GitHub.Demo
             if (lblErrorUserName.Visible || lblErrorGitUrl.Visible || lblErrorToken.Visible)
                 return false;
             else
+            {
+                userInput = new UserInput()
+                {
+                    GitUrl = txtGitUrl.Text,
+                    UserName = txtUserName.Text,
+                    UserToken = txtToken.Text
+                };
                 return true;
-        }
-
-        private string AuthenticateUser()
-        {
-            txtGitUrl.Text += "##";//To get the closing Url
-            if (txtGitUrl.Text.ToUpper().IndexOf(".GIT##") > 0)
-                txtGitUrl.Text = txtGitUrl.Text.ToUpper().Replace(".GIT##", "");
-            else
-                txtGitUrl.Text = txtGitUrl.Text.Replace("##", "");
-            string[] splitGitUrl = txtGitUrl.Text.Split('/');
-            HttpClient client = new HttpClient
-            {
-                BaseAddress = new Uri(Constants.gitHubUrl),
-
-            };
-            client.DefaultRequestHeaders.Add("User-Agent", "Anything");
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", txtToken.Text);
-            var response = client.GetAsync(
-                string.Format("/repos/{0}/{1}/commits", txtUserName.Text, splitGitUrl[splitGitUrl.Length - 1])
-             ).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                return response.Content.ReadAsStringAsync().Result;
             }
-            else
-                return null;
+
         }
 
-
-        private void btnExportCSV_Click(object sender, EventArgs e)
+        private void EnableDisableFieldsAfterResponse()
         {
-            MessageBox.Show("ExportToCSV.csv file will be created and the directory will be opened");
-            BinarySearchTree.dtResultTable.ExportToCSV(AppDomain.CurrentDomain.BaseDirectory + "/ExportToCSV.csv");
-            if(!DirectoryHelper.OpenFolder(AppDomain.CurrentDomain.BaseDirectory))
-                MessageBox.Show(string.Format("{0} Directory does not exist!", AppDomain.CurrentDomain.BaseDirectory));
+            txtGitUrl.Enabled = false;
+            txtToken.Enabled = false;
+            txtUserName.Enabled = false;
+            btnValidateInput.Enabled = false;
+            lblCommentHeader.Visible = true;
+            lblInformation.Visible = false;
+            lblLeftHeading.Text = "Authentication successful.";
+            dataGridView.DataSource = dataTableFromBinaryTree;
+            dataGridView.Visible = true;
+            btnExportCSV.Visible = true;
         }
-
-       
+        #endregion
     }
 }

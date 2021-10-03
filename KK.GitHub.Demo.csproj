@@ -39,6 +39,7 @@
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,11 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassFiles\Constants\Constants.cs" />
-    <Compile Include="ClassFiles\GitModel\GitModels.cs" />
+    <Compile Include="ClassFiles\Model\GitModels.cs" />
+    <Compile Include="ClassFiles\HelperFiles\AuthenticationHelper.cs" />
     <Compile Include="ClassFiles\LogicFiles\BinarySearchTree.cs" />
     <Compile Include="ClassFiles\HelperFiles\DirectoryHelper.cs" />
-    <Compile Include="ClassFiles\HelperFiles\ExportHelper.cs" />
+    <Compile Include="ClassFiles\ExtensionFiles\ExportHelper.cs" />
     <Compile Include="ClassFiles\LogicFiles\Sorting.cs" />
+    <Compile Include="ClassFiles\Model\UserInput.cs" />
     <Compile Include="GithubDemo.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -47,6 +47,9 @@ namespace KK.GitHub.Demo
             this.lblLeftHeading = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblInformation = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
@@ -54,9 +57,6 @@ namespace KK.GitHub.Demo
             this.lblCommentHeader = new System.Windows.Forms.Label();
             this.CommentWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Occurence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -110,6 +110,7 @@ namespace KK.GitHub.Demo
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(518, 26);
             this.txtUserName.TabIndex = 1;
+            this.txtUserName.Text = "keshavkundu";
             // 
             // txtGitUrl
             // 
@@ -117,6 +118,7 @@ namespace KK.GitHub.Demo
             this.txtGitUrl.Name = "txtGitUrl";
             this.txtGitUrl.Size = new System.Drawing.Size(522, 26);
             this.txtGitUrl.TabIndex = 3;
+            this.txtGitUrl.Text = "https://github.com/keshavkundu/KK.GitHub.Demo";
             // 
             // txtToken
             // 
@@ -124,6 +126,7 @@ namespace KK.GitHub.Demo
             this.txtToken.Name = "txtToken";
             this.txtToken.Size = new System.Drawing.Size(520, 26);
             this.txtToken.TabIndex = 2;
+            this.txtToken.Text = "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";
             // 
             // btnValidateInput
             // 
@@ -232,6 +235,39 @@ namespace KK.GitHub.Demo
             this.panel1.Size = new System.Drawing.Size(1265, 53);
             this.panel1.TabIndex = 17;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label11.Location = new System.Drawing.Point(1127, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(120, 20);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Release 2021";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label9.Location = new System.Drawing.Point(534, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 20);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Version 1.0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label1.Location = new System.Drawing.Point(15, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "©KeshavKundu";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -300,7 +336,7 @@ namespace KK.GitHub.Demo
             // CommentWord
             // 
             this.CommentWord.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommentWord.DataPropertyName = "CommentWord";
+            this.CommentWord.DataPropertyName = "Commented Words";
             this.CommentWord.FillWeight = 190.9091F;
             this.CommentWord.HeaderText = "Commented Words";
             this.CommentWord.MinimumWidth = 8;
@@ -319,39 +355,6 @@ namespace KK.GitHub.Demo
             this.Occurence.ReadOnly = true;
             this.Occurence.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Occurence.Width = 122;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(15, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "©KeshavKundu";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label9.Location = new System.Drawing.Point(534, 15);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 20);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Version 1.0";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label11.Location = new System.Drawing.Point(1127, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 20);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Release 2021";
             // 
             // GithubDemo
             // 
@@ -418,11 +421,11 @@ namespace KK.GitHub.Demo
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button btnExportCSV;
         private System.Windows.Forms.Label lblCommentHeader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommentWord;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Occurence;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommentWord;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Occurence;
     }
 }
 
