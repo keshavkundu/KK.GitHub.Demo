@@ -53,10 +53,10 @@ namespace KK.GitHub.Demo
             this.label10 = new System.Windows.Forms.Label();
             this.lblInformation = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.btnExportCSV = new System.Windows.Forms.Button();
-            this.lblCommentHeader = new System.Windows.Forms.Label();
             this.CommentWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Occurence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExportCSV = new System.Windows.Forms.Button();
+            this.lblCommentHeader = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -110,7 +110,6 @@ namespace KK.GitHub.Demo
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(518, 26);
             this.txtUserName.TabIndex = 1;
-            this.txtUserName.Text = "keshavkundu";
             // 
             // txtGitUrl
             // 
@@ -118,7 +117,6 @@ namespace KK.GitHub.Demo
             this.txtGitUrl.Name = "txtGitUrl";
             this.txtGitUrl.Size = new System.Drawing.Size(522, 26);
             this.txtGitUrl.TabIndex = 3;
-            this.txtGitUrl.Text = "https://github.com/keshavkundu/KK.GitHub.Demo";
             // 
             // txtToken
             // 
@@ -126,7 +124,6 @@ namespace KK.GitHub.Demo
             this.txtToken.Name = "txtToken";
             this.txtToken.Size = new System.Drawing.Size(520, 26);
             this.txtToken.TabIndex = 2;
-            this.txtToken.Text = "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";
             // 
             // btnValidateInput
             // 
@@ -306,6 +303,29 @@ namespace KK.GitHub.Demo
             this.dataGridView.TabIndex = 0;
             this.dataGridView.Visible = false;
             // 
+            // CommentWord
+            // 
+            this.CommentWord.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommentWord.DataPropertyName = "Commented Words";
+            this.CommentWord.FillWeight = 190.9091F;
+            this.CommentWord.HeaderText = "Commented Words";
+            this.CommentWord.MinimumWidth = 8;
+            this.CommentWord.Name = "CommentWord";
+            this.CommentWord.ReadOnly = true;
+            this.CommentWord.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Occurence
+            // 
+            this.Occurence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Occurence.DataPropertyName = "Occurence";
+            this.Occurence.FillWeight = 9.090912F;
+            this.Occurence.HeaderText = "Occurence";
+            this.Occurence.MinimumWidth = 8;
+            this.Occurence.Name = "Occurence";
+            this.Occurence.ReadOnly = true;
+            this.Occurence.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Occurence.Width = 122;
+            // 
             // btnExportCSV
             // 
             this.btnExportCSV.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -332,29 +352,6 @@ namespace KK.GitHub.Demo
             this.lblCommentHeader.Text = "The most common words used by the user in comments section during\r\nthe check in p" +
     "rocess sorted in ASCII order.";
             this.lblCommentHeader.Visible = false;
-            // 
-            // CommentWord
-            // 
-            this.CommentWord.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommentWord.DataPropertyName = "Commented Words";
-            this.CommentWord.FillWeight = 190.9091F;
-            this.CommentWord.HeaderText = "Commented Words";
-            this.CommentWord.MinimumWidth = 8;
-            this.CommentWord.Name = "CommentWord";
-            this.CommentWord.ReadOnly = true;
-            this.CommentWord.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Occurence
-            // 
-            this.Occurence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Occurence.DataPropertyName = "Occurence";
-            this.Occurence.FillWeight = 9.090912F;
-            this.Occurence.HeaderText = "Occurence";
-            this.Occurence.MinimumWidth = 8;
-            this.Occurence.Name = "Occurence";
-            this.Occurence.ReadOnly = true;
-            this.Occurence.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Occurence.Width = 122;
             // 
             // GithubDemo
             // 
