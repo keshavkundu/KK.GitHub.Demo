@@ -44,7 +44,9 @@ namespace KK.GitHub.Demo
                                     binarySearch.AddNode(commentWords[i].Trim());
                                 }
                             }
-                            dataTableFromBinaryTree = BinarySearchTree.convertBinaryTreeToDataTable(binarySearch.Root);
+
+                            //Bubble Sort the responses
+                            dataTableFromBinaryTree = BinarySearchTree.convertBinaryTreeToList(binarySearch.Root).sortAndBindListToDataTable();
                             EnableDisableFieldsAfterResponse();
                         }
                         else

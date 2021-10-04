@@ -7,8 +7,11 @@
  Referenced files:  GithubDemo.cs calls BinarySearchTree class and Node class by BinarySearchTree class
  */
 using System;
+using System.Collections.Generic;
 using System.Data;
 using KK.GitHub.Demo.ClassFiles.Constants;
+using KK.GitHub.Demo.ClassFiles.Model;
+
 namespace KK.GitHub.Demo.ClassFiles.LogicFiles
 {
     /// <summary>
@@ -28,6 +31,7 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
     public class BinarySearchTree
     {
         private static readonly DataTable dtResultTable = new DataTable();
+        private static readonly List<Word> dtResultList = new List<Word>();
 
         #region Public Accessed Objects and Methods
 
@@ -144,6 +148,30 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
             }
             return dtResultTable;
         }
+
+        /// <summary>
+        /// This method is used to convert a binary tree node to List of Word object
+        /// </summary>
+        /// <param name="parent">Node object or root</param>
+        /// <returns></returns>
+        public static List<Word> convertBinaryTreeToList(Node parent)
+        {
+            try
+            {
+                if (parent != null)
+                {
+                    convertBinaryTreeToList(parent.LeftNode);
+                    dtResultList.Add(new Word { CommentedWord = parent.Word, Occurence = parent.Count });
+                    convertBinaryTreeToList(parent.RightNode);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dtResultList;
+        }
+
         #endregion
     }
 }

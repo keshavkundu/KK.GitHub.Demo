@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassFiles\Constants\Constants.cs" />
+    <Compile Include="ClassFiles\ExtensionFiles\BubbleSort.cs" />
     <Compile Include="ClassFiles\Model\GitModels.cs" />
     <Compile Include="ClassFiles\HelperFiles\AuthenticationHelper.cs" />
     <Compile Include="ClassFiles\LogicFiles\BinarySearchTree.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="ClassFiles\ExtensionFiles\ExportHelper.cs" />
     <Compile Include="ClassFiles\LogicFiles\Sorting.cs" />
     <Compile Include="ClassFiles\Model\UserInput.cs" />
+    <Compile Include="ClassFiles\Model\Word.cs" />
     <Compile Include="GithubDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,9 +113,6 @@
     </Compile>
     <None Include="KK.GitHub.Demo_TemporaryKey.pfx" />
     <None Include="packages.config" />
-    <None Include="PreBuiltVersion1.0\KK.GitHub.Demo.application" />
-    <None Include="PreBuiltVersion1.0\KK.GitHub.Demo.exe.config" />
-    <None Include="PreBuiltVersion1.0\KK.GitHub.Demo.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,13 +137,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PreBuiltVersion1.0\app.publish\KK.GitHub.Demo.exe" />
-    <Content Include="PreBuiltVersion1.0\KK.GitHub.Demo.exe" />
-    <Content Include="PreBuiltVersion1.0\KK.GitHub.Demo.pdb" />
-    <Content Include="PreBuiltVersion1.0\Newtonsoft.Json.dll" />
-    <Content Include="PreBuiltVersion1.0\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
