@@ -195,7 +195,7 @@ namespace KK.GitHub.Demo
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(324, 244);
+            this.label8.Location = new System.Drawing.Point(326, 244);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(15, 20);
             this.label8.TabIndex = 14;
@@ -350,7 +350,7 @@ namespace KK.GitHub.Demo
             this.lblCommentHeader.Size = new System.Drawing.Size(621, 50);
             this.lblCommentHeader.TabIndex = 20;
             this.lblCommentHeader.Text = "The most common words used by the user in comments section during\r\nthe check in p" +
-    "rocess sorted in ASCII order.";
+    "rocess sorted in ASCII values ascending.";
             this.lblCommentHeader.Visible = false;
             // 
             // GithubDemo

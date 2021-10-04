@@ -43,15 +43,13 @@ namespace KK.GitHub.Demo.Tests
         [TestMethod]
         public void TestAddingNode()
         {
-             *                                      apple (root)
-             *                              
-             *         APPLE(left)                                          mango(right)   
-             *             
-             * NULL(left)          MANGO(right)                    banana(left)        orange(right)
-             * 
-             *             NULL(left)          ORANGE(right)                     
-             * 
-             *
+             //                                     apple (root)
+             //         APPLE(left)                                          mango(right)   
+             //            
+             // NULL(left)          MANGO(right)                    banana(left)        orange(right)
+             // 
+             //             NULL(left)          ORANGE(right)                     
+             //
             BinarySearchTree binarySearchTree = new BinarySearchTree();
             binarySearchTree.AddNode("apple");
             binarySearchTree.AddNode("APPLE");
@@ -60,14 +58,33 @@ namespace KK.GitHub.Demo.Tests
             binarySearchTree.AddNode("orange");
             binarySearchTree.AddNode("ORANGE");
             binarySearchTree.AddNode("banana");
-            Assert.IsTrue(binarySearchTree.Root.LeftNode.Word == "APPLE");
+            Assert.AreEqual("apple", binarySearchTree.Root.Word);
+            Assert.AreEqual("APPLE", binarySearchTree.Root.LeftNode.Word);
             Assert.IsTrue(binarySearchTree.Root.LeftNode.LeftNode == null);
-            Assert.IsTrue(binarySearchTree.Root.LeftNode.RightNode.Word == "MANGO");
+            Assert.AreEqual("MANGO", binarySearchTree.Root.LeftNode.RightNode.Word);
             Assert.IsTrue(binarySearchTree.Root.LeftNode.RightNode.LeftNode == null);
-            Assert.IsTrue(binarySearchTree.Root.LeftNode.RightNode.RightNode.Word == "ORANGE");
-            Assert.IsTrue(binarySearchTree.Root.RightNode.Word == "mango");
-            Assert.IsTrue(binarySearchTree.Root.RightNode.RightNode.Word == "orange");
-            Assert.IsTrue(binarySearchTree.Root.RightNode.LeftNode.Word == "banana");
+            Assert.AreEqual("ORANGE", binarySearchTree.Root.LeftNode.RightNode.RightNode.Word);
+            Assert.AreEqual("mango", binarySearchTree.Root.RightNode.Word);
+            Assert.AreEqual("orange", binarySearchTree.Root.RightNode.RightNode.Word);
+            Assert.AreEqual("banana", binarySearchTree.Root.RightNode.LeftNode.Word);
+        }
+
+        /// <summary>
+        /// [TestMethod] for checking Bubble Sort is working based on ASCII values
+        /// </summary>
+        [TestMethod]
+        public void TestingBubbleSort()
+        {
+            List<Word> words = new List<Word>();
+            words.Add(new Word() { CommentedWord = "apple", Occurence = 2 });
+            words.Add(new Word() { CommentedWord = "APPLE", Occurence = 1 });
+            words.Add(new Word() { CommentedWord = "mango", Occurence = 3 });
+            words.Add(new Word() { CommentedWord = "ORANGE", Occurence = 4 });
+            DataTable dataTable = words.sortAndBindListToDataTable();
+            Assert.IsTrue(dataTable.Rows[0][0].ToString() == "APPLE" && Convert.ToInt32(dataTable.Rows[0][1]) == 1);
+            Assert.IsTrue(dataTable.Rows[1][0].ToString() == "ORANGE" && Convert.ToInt32(dataTable.Rows[1][1]) == 4);
+            Assert.IsTrue(dataTable.Rows[2][0].ToString() == "apple" && Convert.ToInt32(dataTable.Rows[2][1]) == 2);
+            Assert.IsTrue(dataTable.Rows[3][0].ToString() == "mango" && Convert.ToInt32(dataTable.Rows[3][1]) == 3);
         }
     }
 }
