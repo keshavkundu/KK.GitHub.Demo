@@ -22,43 +22,49 @@ namespace KK.GitHub.Demo.ClassFiles.ExtensionFiles
         /// <returns>Datatable</returns>
         public static DataTable sortAndBindListToDataTable(this List<Word> wordList)
         {
-            string tempVariable = string.Empty;
-
-            //Intialise the DataTable with the columns
-            DataTable dtResultTable = new DataTable();
-            dtResultTable.Columns.Add(ApplicationConstants.firstColumn, typeof(string));
-            dtResultTable.Columns.Add(ApplicationConstants.secondColumn, typeof(int));
-
-
-            string[] wordsToBeSorted = wordList.Select(x => x.CommentedWord).ToArray();
-            int length = wordsToBeSorted.Length;
-            
-            //Bubble sort process starting
-            for (int i = 0; i < length; i++)
+                
+            try
             {
-                for (int j = 0; j < length - 1; j++)
+                //Intialise the DataTable
+                DataTable dtResultTable = new DataTable();
+                //Add default columns to DataTable
+                dtResultTable.Columns.Add(ApplicationConstants.firstColumn, typeof(string));
+                dtResultTable.Columns.Add(ApplicationConstants.secondColumn, typeof(int));
+
+                string tempVariable = string.Empty;
+                string[] wordsToBeSorted = wordList.Select(x => x.CommentedWord).ToArray();
+                int length = wordsToBeSorted.Length;
+
+                //Bubble sort process starting
+                for (int i = 0; i < length; i++)
                 {
-                    if (getASCIIValue(wordsToBeSorted[j]) > getASCIIValue(wordsToBeSorted[j + 1]))
+                    for (int j = 0; j < length - 1; j++)
                     {
-                        tempVariable = wordsToBeSorted[j];
-                        wordsToBeSorted[j] = wordsToBeSorted[j + 1];
-                        wordsToBeSorted[j + 1] = tempVariable;
+                        if (getASCIIValue(wordsToBeSorted[j]) > getASCIIValue(wordsToBeSorted[j + 1]))
+                        {
+                            tempVariable = wordsToBeSorted[j];
+                            wordsToBeSorted[j] = wordsToBeSorted[j + 1];
+                            wordsToBeSorted[j + 1] = tempVariable;
+                        }
                     }
                 }
-            }
-            
-            //Converting the sorted words to Datatable
-            for (int i = 0; i < wordsToBeSorted.Length; i++)
-            {
-                DataRow drRow = dtResultTable.NewRow();
-                int countOfWord = wordList.Where(x => x.CommentedWord.Equals(wordsToBeSorted[i])).FirstOrDefault().Occurence;
-                drRow[0] = wordsToBeSorted[i];
-                drRow[1] = countOfWord;
-                dtResultTable.Rows.Add(drRow);
-            }
 
-            //return the datatable
-            return dtResultTable;
+                //Converting the sorted words to Datatable
+                for (int i = 0; i < wordsToBeSorted.Length; i++)
+                {
+                    DataRow drRow = dtResultTable.NewRow();
+                    int countOfWord = wordList.Where(x => x.CommentedWord.Equals(wordsToBeSorted[i])).FirstOrDefault().Occurence;
+                    drRow[0] = wordsToBeSorted[i];
+                    drRow[1] = countOfWord;
+                    dtResultTable.Rows.Add(drRow);
+                }
+                //return the datatable
+                return dtResultTable;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
