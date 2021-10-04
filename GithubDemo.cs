@@ -106,6 +106,11 @@ namespace KK.GitHub.Demo
 
         private bool ValidationSuccess()
         {
+            //Hide the label first when clicked
+            lblErrorUserName.Visible = false;
+            lblErrorGitUrl.Visible = false;
+            lblErrorToken.Visible = false;
+
             if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
             {
                 lblErrorUserName.Visible = true;
