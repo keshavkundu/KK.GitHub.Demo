@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KK.GitHub.Demo.exe" size="26592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KK.GitHub.Demo.exe" size="28640">
       <assemblyIdentity name="KK.GitHub.Demo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SBUdmbGcovs0aNdKGt21mPiY8UMQWzZS5JLS4fkykFc=</dsig:DigestValue>
+        <dsig:DigestValue>g9Gs8WOFJkW4+IcrEl0QelrLosw7Ka0fnVjTER3uVW8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
