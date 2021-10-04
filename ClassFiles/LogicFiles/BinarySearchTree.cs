@@ -3,7 +3,7 @@
  Created Date:      02-10-2021
  Modified Date:     NA
  Purpose:           BinarySearchTree class methods are being used to add nodes in the search tree.
-                    Store the string values in the tree and onvert the tree to datatable.
+                    Store the string values in the tree and convert the tree to datatable.
  Referenced files:  GithubDemo.cs calls BinarySearchTree class and Node class by BinarySearchTree class
  */
 using System;

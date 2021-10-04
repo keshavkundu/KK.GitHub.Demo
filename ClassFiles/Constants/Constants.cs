@@ -2,7 +2,7 @@
  Created By:        Keshav Kundu
  Created Date:      03-10-2021
  Modified Date:     NA
- Purpose:           A constant class to store all the harcoded values in application.
+ Purpose:           A constant class to store the hardcoded values in application.
  Future Scope:      Some of the constants can be included in App.config file.
  Referenced files:  GithubDemo.cs file.  
  */
