@@ -53,7 +53,8 @@ namespace KK.GitHub.Demo.ClassFiles.HelperFiles
                 {
                     return false;
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

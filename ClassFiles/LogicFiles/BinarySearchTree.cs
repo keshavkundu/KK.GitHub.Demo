@@ -6,11 +6,11 @@
                     Store the string values in the tree and convert the tree to datatable.
  Referenced files:  GithubDemo.cs calls BinarySearchTree class and Node class by BinarySearchTree class
  */
+using KK.GitHub.Demo.ClassFiles.Constants;
+using KK.GitHub.Demo.ClassFiles.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using KK.GitHub.Demo.ClassFiles.Constants;
-using KK.GitHub.Demo.ClassFiles.Model;
 
 namespace KK.GitHub.Demo.ClassFiles.LogicFiles
 {
@@ -123,13 +123,13 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
         /// </summary>
         /// <param name="parent">Node object or root</param>
         /// <returns>Datatable with coulmn CommentWord and Occurence</returns>
-        public static DataTable convertBinaryTreeToDataTable(Node parent)
+        public static DataTable ConvertBinaryTreeToDataTable(Node parent)
         {
             try
             {
                 if (parent != null)
                 {
-                    convertBinaryTreeToDataTable(parent.LeftNode);
+                    ConvertBinaryTreeToDataTable(parent.LeftNode);
                     if (dtResultTable.Columns.Count == 0)
                     {
                         dtResultTable.Columns.Add(ApplicationConstants.firstColumn, typeof(string));
@@ -139,7 +139,7 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
                     drRow[0] = parent.Word;
                     drRow[1] = parent.Count;
                     dtResultTable.Rows.Add(drRow);
-                    convertBinaryTreeToDataTable(parent.RightNode);
+                    ConvertBinaryTreeToDataTable(parent.RightNode);
                 }
             }
             catch (Exception ex)
@@ -154,15 +154,15 @@ namespace KK.GitHub.Demo.ClassFiles.LogicFiles
         /// </summary>
         /// <param name="parent">Node object or root</param>
         /// <returns></returns>
-        public static List<Word> convertBinaryTreeToList(Node parent)
+        public static List<Word> ConvertBinaryTreeToList(Node parent)
         {
             try
             {
                 if (parent != null)
                 {
-                    convertBinaryTreeToList(parent.LeftNode);
+                    ConvertBinaryTreeToList(parent.LeftNode);
                     dtResultList.Add(new Word { CommentedWord = parent.Word, Occurence = parent.Count });
-                    convertBinaryTreeToList(parent.RightNode);
+                    ConvertBinaryTreeToList(parent.RightNode);
                 }
             }
             catch (Exception ex)

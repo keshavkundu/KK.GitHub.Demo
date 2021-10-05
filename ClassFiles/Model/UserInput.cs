@@ -20,10 +20,10 @@ namespace KK.GitHub.Demo.ClassFiles.Model
         [Required]
         public string GitUrl
         {
-            get { return _gitUrl; } 
+            get { return _gitUrl; }
             set
             {
-                value = value + "##";
+                value += "##";
                 //To ensure that this is the last character as .git might be present in between
                 if (value.ToLower().IndexOf(".git##") > -1)
                     _gitUrl = value.ToLower().Replace(".git##", "");

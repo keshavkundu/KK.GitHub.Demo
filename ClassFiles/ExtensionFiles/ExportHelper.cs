@@ -91,7 +91,7 @@ namespace KK.GitHub.Demo.ClassFiles.ExtensionFiles
             }
             catch (Exception)
             {
-                
+
                 //In case exception occurs while logging the exception show message to user.
             }
             return false;

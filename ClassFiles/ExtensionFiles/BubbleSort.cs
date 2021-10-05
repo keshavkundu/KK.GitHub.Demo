@@ -20,9 +20,9 @@ namespace KK.GitHub.Demo.ClassFiles.ExtensionFiles
         /// </summary>
         /// <param name="wordList"></param>
         /// <returns>Datatable</returns>
-        public static DataTable sortAndBindListToDataTable(this List<Word> wordList)
+        public static DataTable SortAndBindListToDataTable(this List<Word> wordList)
         {
-                
+
             try
             {
                 //Intialise the DataTable
@@ -40,7 +40,7 @@ namespace KK.GitHub.Demo.ClassFiles.ExtensionFiles
                 {
                     for (int j = 0; j < length - 1; j++)
                     {
-                        if (getASCIIValue(wordsToBeSorted[j]) > getASCIIValue(wordsToBeSorted[j + 1]))
+                        if (GetASCIIValue(wordsToBeSorted[j]) > GetASCIIValue(wordsToBeSorted[j + 1]))
                         {
                             tempVariable = wordsToBeSorted[j];
                             wordsToBeSorted[j] = wordsToBeSorted[j + 1];
@@ -69,7 +69,7 @@ namespace KK.GitHub.Demo.ClassFiles.ExtensionFiles
         }
 
         #region private methods
-        private static int getASCIIValue(string input)
+        private static int GetASCIIValue(string input)
         {
             int sum = 0;
             for (int i = 0; i < input.Length; i++)

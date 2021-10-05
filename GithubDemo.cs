@@ -1,12 +1,12 @@
 ﻿using KK.GitHub.Demo.ClassFiles.ExtensionFiles;
-using KK.GitHub.Demo.ClassFiles.Model;
 using KK.GitHub.Demo.ClassFiles.HelperFiles;
 using KK.GitHub.Demo.ClassFiles.LogicFiles;
+using KK.GitHub.Demo.ClassFiles.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Data;
+using System.Windows.Forms;
 
 namespace KK.GitHub.Demo
 {
@@ -46,7 +46,7 @@ namespace KK.GitHub.Demo
                             }
 
                             //Bubble Sort the responses
-                            dataTableFromBinaryTree = BinarySearchTree.convertBinaryTreeToList(binarySearch.Root).sortAndBindListToDataTable();
+                            dataTableFromBinaryTree = BinarySearchTree.ConvertBinaryTreeToList(binarySearch.Root).SortAndBindListToDataTable();
                             EnableDisableFieldsAfterResponse();
                         }
                         else
